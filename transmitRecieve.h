@@ -7,7 +7,8 @@
 #define NAK 0x15 // not aknowlege
 #define dt 10000 // period in us
 
-// transmits a message and returns the sum of the bits as a char
+// transmits a message and returns the sum of the bits as a char 
+// NOTE THE LAST CHARACTER OF MSG WILL BE SET TO EOT
 char transmit(char* msg, int length){
   msg[length - 1] = EOT; // set the end of transmission value
   char checkSum = 0;
@@ -72,14 +73,15 @@ bool awaitTransmission() {
 }
 
 // looks for an aknowledge or a not aknowledge response and returns such
-char seekAKG(){
+bool seekAKG(){
   char c = 0;
   while(c != AKG && c != NAK){
     bool curBit = digitalRead(sensorPin);
     c = c << 1 + curBit;
     delayMicroseconds(dt);
   }
-  return c;
+  if (c == AKG) return true;
+  return false;
 }
 
 // old buffer based system (It's kinda cheeks tbh)
