@@ -71,6 +71,8 @@ bool awaitTransmission() {
   return 1;
 }
 
+// 
+char seekAKG()
 
 // old buffer based system (It's kinda cheeks tbh)
 
