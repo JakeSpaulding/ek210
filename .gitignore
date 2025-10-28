@@ -1,0 +1,30 @@
+# VS Code
+.vscode/
+
+# Build artifacts
+*.exe
+*.out
+*.o
+*.obj
+*.log
+build/
+bin/
+
+# Backup and OS files
+*.tmp
+*~
+Thumbs.db
+.DS_Store
+
+# Ignore compiled test executable if present
+test.exe
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Misc
+*.user
+*.userosscache
