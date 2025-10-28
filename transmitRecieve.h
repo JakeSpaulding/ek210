@@ -64,15 +64,23 @@ char recieveChar(){
 bool awaitTransmission() {
   char c = 0;
   while(decodeBits(buffer) != SOT){
-    curBit = digitalRead(sensorPin);
+    bool curBit = digitalRead(sensorPin);
     c = c << 1 + curBit;
     delayMicroseconds(dt);
   }
   return 1;
 }
 
-// 
-char seekAKG()
+// looks for an aknowledge or a not aknowledge response and returns such
+char seekAKG(){
+  char c = 0;
+  while(c != AKG && c != NAK){
+    bool curBit = digitalRead(sensorPin);
+    c = c << 1 + curBit;
+    delayMicroseconds(dt);
+  }
+  return c;
+}
 
 // old buffer based system (It's kinda cheeks tbh)
 
